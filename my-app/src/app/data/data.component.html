@@ -1,0 +1,27 @@
+<input type="text" placeholder="Search by name" #filter (change)="filterName(filter.value)">
+<!-- <button (click)="filterName(filter.value)">Search</button> -->
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>city</th>
+            <th>state</th>
+            <th>availableUnits</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of filteredNameList">
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.city}}</td>
+            <td>{{item.state}}</td>
+            <td>{{item.availableUnits}}</td>
+        </tr>
+    </tbody>
+</table>
+
+ 
+
+<!-- {{getItem()}} -->

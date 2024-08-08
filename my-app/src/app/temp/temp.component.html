@@ -1,0 +1,37 @@
+<div class="d-flex justify-center align-content-center ">
+
+  <h1 class="m-auto">
+    Hello this is a home page
+  </h1>
+</div>
+
+
+
+<form (ngSubmit)="onsubmit()" #Myform="ngForm" >
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="obj.name"  >
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"  [(ngModel)]="obj.email"  >
+
+  <button type="submit" [ngClass]="{'button':!(obj.name&&obj.email)}" >Submit</button>
+</form>
+ 
+
+<table class="table table-responsive">
+  <thead>
+      <tr> 
+          <th>Name</th>
+          <th>email</th> 
+      </tr>
+  </thead>
+  <tbody *ngFor="let item of data">
+      <tr>
+          
+          <td>{{item.name}}</td>
+          <td>{{item.email}}</td> 
+      </tr>
+  </tbody>
+</table>
+ 
+

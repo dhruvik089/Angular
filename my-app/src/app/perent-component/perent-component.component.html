@@ -1,0 +1,14 @@
+<div class="w-50 m-auto">
+
+    <h4>
+        {{name}}
+    </h4>
+
+    <app-child-component [child]="data"></app-child-component>
+
+</div>
+
+<div class="w-50 m-auto mt-5">
+    <app-child-component (dataToParent)="receiveDataFromChild()"></app-child-component>
+    <p>Data received from child: {{ dataFromChild }}</p>
+</div>

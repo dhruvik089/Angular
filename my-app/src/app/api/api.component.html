@@ -1,0 +1,26 @@
+<p>api works!</p>
+
+<h3>
+    {{return_data}}
+</h3>
+
+<button (click)="onclickbtn()">Click btton</button>
+
+<table class="table table-responsive table-bordered" *ngIf="isData()">
+    <thead>
+        <tr>
+            <th>productid</th>
+            <th>Productname</th>
+            <th>type</th>
+            <th>price</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of data">
+        <tr>
+            <td>{{ item.productid }}</td>
+            <td>{{ item.Productname }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+    </tbody>
+</table>

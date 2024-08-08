@@ -14,6 +14,7 @@ import { DataComponent } from './data/data.component';
 import { PerentComponentComponent } from './perent-component/perent-component.component';
 import { ChildComponentComponent } from './perent-component/child-component/child-component.component';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { LifeCycleComponent } from './life-cycle/life-cycle.component';
     PerentComponentComponent,
     ChildComponentComponent,
     LifeCycleComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

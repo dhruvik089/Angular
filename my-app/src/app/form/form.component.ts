@@ -2,8 +2,7 @@ import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiComponent } from '../api/ApiComponent';
-import { MyServiceService } from '../Services/my-service.service';
-import { flush } from '@angular/core/testing';
+import { MyServiceService } from '../Services/my-service.service'; 
 
 @Component({
   selector: 'app-form',
@@ -50,6 +49,7 @@ export class FormComponent implements OnInit {
       this.services.PostApi(`${this.api}Registration`)
       .then(response =>response.json)
       .catch(error =>console.log(error))
+      this.router.navigate(['/services'])
     }
   }
 

@@ -15,6 +15,8 @@ import { PerentComponentComponent } from './perent-component/perent-component.co
 import { ChildComponentComponent } from './perent-component/child-component/child-component.component';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

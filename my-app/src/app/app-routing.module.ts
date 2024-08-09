@@ -25,7 +25,7 @@ const routes: Routes = [
     component: LifeCycleComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'Login', component: LoginComponent },
+  { path: 'Login', component: LoginComponent }, 
 ];
 
 @NgModule({

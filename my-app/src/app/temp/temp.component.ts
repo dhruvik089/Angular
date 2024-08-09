@@ -1,5 +1,7 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren, } from '@angular/core'
 import { NgForm } from '@angular/forms'
+import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-temp',
@@ -19,6 +21,17 @@ export class TempComponent {
   obj = {
     name: '',
     email: '',
+  }
+
+  constructor(private authService: AuthService,private cookieService: CookieService) {}
+  payload: any;
+  ngOnInit(): void {
+    const token = this.cookieService.get('JWT')
+    this.payload = this.authService.decodeToken(token);
+    console.log("Play LOads", this.payload);
+    
+    console.log('Email :-', this.payload.jku);
+    console.log('Password :-', this.payload.Jwk);
   }
 
   clickBtn() {

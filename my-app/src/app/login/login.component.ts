@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MyServiceService } from '../Services/my-service.service';
 import { AuthService } from '../auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     private myService: MyServiceService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     authService.removeToken();
   }
@@ -26,11 +28,11 @@ export class LoginComponent {
   login(form: NgForm) {
     this.isEmailValid = true;
     this.isPasswordValid = true;
-    
+
     if (form.value.Email == '' || form.value.Password == '') {
       if (form.value.Email == '') this.isEmailValid = false;
       if (form.value.Password == '') this.isPasswordValid = false;
- 
+
       return;
     }
 
@@ -44,8 +46,7 @@ export class LoginComponent {
         this.router.navigate(['/Temp']);
       })
       .catch((error) => {
-        alert('Something went wrong');
-        console.log(error);        
+        this.toastr.error('Failed to login');
       });
   }
 }

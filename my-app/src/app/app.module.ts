@@ -17,6 +17,8 @@ import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,12 @@ import { AuthGuard } from './auth.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right', // Position the toast in the top-right corner
+      preventDuplicates: true, 
+      progressBar: true
+    }),
   ],
   providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent],

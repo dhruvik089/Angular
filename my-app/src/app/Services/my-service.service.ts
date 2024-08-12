@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,7 @@ export class MyServiceService {
   }
 
   async PostApi(api: string): Promise<any> {
+    // eslint-disable-next-line no-useless-catch
     try {
       const response = await fetch(api, {
         method: 'POST',
@@ -31,20 +32,14 @@ export class MyServiceService {
 
       return await response.json();
     } catch (error) {
-      console.error(
-        'There has been a problem with your fetch operation: ',
-        error
-      );
       throw error;
     }
   }
 
   async getUserList(api: string): Promise<any> {
+    // eslint-disable-next-line no-useless-catch
     try {
       const Response = await fetch(api);
-
-      console.log('Response :-', Response);
-      console.log('This is a list of users that have authenticated');
 
       if (!Response.ok) {
         throw new Error(`HTTP error! status: ${Response.status}`);
@@ -52,7 +47,6 @@ export class MyServiceService {
 
       return await Response.json();
     } catch (error) {
-      console.error('Error in fetching data: ', error);
       throw error;
     }
   }
@@ -65,10 +59,7 @@ export class MyServiceService {
     });
 
     observable.subscribe((data) => {
-      console.log(data);
-      console.log('first');
+      console.log(data);     
     });
   }
 }
-
-

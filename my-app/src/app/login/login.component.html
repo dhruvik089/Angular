@@ -7,15 +7,18 @@
         <div class="mb-3">
             <label for="" class="form-label">Email</label>
             <input type="text" name="Email" id="" class="form-control" placeholder="Enter your email address" ngModel />
-            <p class="text-danger"   [ngClass]="{'d-none': isEmailValid}">Enter Email</p>
+            <p class="text-danger" [ngClass]="{'d-none': isEmailValid}">Enter Email</p>
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Password</label>
-            <input type="text" name="Password" id="" class="form-control" placeholder="Enter your Password" ngModel />
-            <p class="text-danger"  [ngClass]="{'d-none': isPasswordValid}">Enter Password</p>
+            <input type="password" name="Password" id="" class="form-control" placeholder="Enter your Password"
+                ngModel />
+            <p class="text-danger" [ngClass]="{'d-none': isPasswordValid}">Enter Password</p>
         </div>
-        <button class="btn btn-primary" type="submit">Login</button>
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a href="/Form">Register</a>
+        </div>
     </form>
 </div>
- 

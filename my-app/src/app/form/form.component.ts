@@ -2,7 +2,7 @@ import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiComponent } from '../api/ApiComponent';
-import { MyServiceService } from '../Services/my-service.service'; 
+import { MyServiceService } from '../Services/my-service.service';
 
 @Component({
   selector: 'app-form',
@@ -13,21 +13,21 @@ export class FormComponent implements OnInit {
   @ViewChild('myForm', { static: false }) form!: NgForm;
   apiComponent: ApiComponent;
   services: MyServiceService = inject(MyServiceService);
-  api = 'http://localhost:51206/api/Register/';
+
+  RegisterApi = `http://localhost:51206/api/Register/`;
+  UserApi = `http://localhost:51206/api/user/`;
 
   constructor(private router: Router) {}
-
-  showTable = false;
 
   data: any = [];
 
   async ngOnInit() {
     await this.services
-      .getUserList(`${this.api}GetAllUser`)
-      .then((res) => { 
+      .getUserList(`${this.UserApi}GetAllUser`)
+      .then((res) => {
         this.data = res;
       })
-      .catch((err) => console.log('error occurred'));
+      .catch((err) => console.log('error occurred', err));
   }
 
   obj = {
@@ -38,23 +38,20 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (this.form && this.form.valid) {
-      const objDemo = {
-        name: this.form.value.username,
-        email: this.form.value.Email,
-      };
-
       this.services.data.Username = this.form.value.username;
       this.services.data.Password = this.form.value.password;
       this.services.data.Email = this.form.value.Email;
-      this.services.PostApi(`${this.api}Registration`)
-      .then(response =>response.json)
-      .catch(error =>console.log(error))
-      this.router.navigate(['/services'])
-    }
-  }
 
-  showDetails() {
-    this.showTable = true;
-    console.log(this.data);
+      console.log(this.services.data);
+      console.log(this.RegisterApi);
+
+      this.services
+        .PostApi(`${this.RegisterApi}Registration`)
+        .then((response) => {
+          response.json;
+        })
+        .catch((error) => console.log(error));
+      this.router.navigate(['/Login']);
+    }
   }
 }

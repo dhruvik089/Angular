@@ -11,10 +11,10 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },
-  { path: 'Temp', component: TempComponent, canActivate: [AuthGuard]},
-  { path: 'Data', component: DataComponent, canActivate: [AuthGuard]},
-  { path: 'Form', component: FormComponent, canActivate: [AuthGuard]},
-  { path: 'Api', component: ApiComponent, canActivate: [AuthGuard]},
+  { path: 'Temp', component: TempComponent, canActivate: [AuthGuard] },
+  { path: 'Data', component: DataComponent, canActivate: [AuthGuard] },
+  { path: 'Api', component: ApiComponent, canActivate: [AuthGuard] },
+  { path: 'Form', component: FormComponent },
   {
     path: 'Perent-component',
     component: PerentComponentComponent,
@@ -25,7 +25,7 @@ const routes: Routes = [
     component: LifeCycleComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'Login', component: LoginComponent }, 
+  { path: 'Login', component: LoginComponent },
 ];
 
 @NgModule({

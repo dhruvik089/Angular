@@ -12,30 +12,8 @@
     <label for="email" class="form-label m-3">Password:</label>
     <input type="password" id="password" class="form-control" name="password" [(ngModel)]="obj.password" required>
   </div>
-
-  <button type="submit" class="btn btn-primary m-3">Submit</button>
+  <div class="d-flex justify-content-between">
+    <button type="submit" class="btn btn-primary m-3">Submit</button>
+    <a href="/Login">Already User?</a>
+  </div>
 </form>
-
-<div class="w-50 m-auto mt-5">
-  <h3>Data List</h3>
-</div>
-
-<table class="table table-responsive w-50 m-auto" *ngIf="data.length>0">
-
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let item of data">
-    <tr> 
-      <td>{{item.Username}}</td>
-      <td>{{item.Email}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<p *ngIf="data.length===0">No data available</p>
-
-<button type="button" class="btn btn-primary" (click)="showDetails()">Show data</button>

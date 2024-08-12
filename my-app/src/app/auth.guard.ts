@@ -1,16 +1,25 @@
 import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service'; // Import AuthService
+import { AuthService } from './Services/auth.service'; // Import AuthService
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
+  jwtToken: string = this.cookieService.get('JWT');
 
   canActivate(): boolean {
-    if (this.authService.isAuthenticated()) {
+    if (
+      this.authService.isAuthenticated() &&
+      this.authService.decodeToken(this.jwtToken)
+    ) {
       return true;
     } else {
       this.router.navigate(['/Login']);
@@ -18,4 +27,3 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
-

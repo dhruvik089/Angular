@@ -25,12 +25,18 @@ export class MyServiceService {
         },
         body: JSON.stringify(this.data),
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      
+      if (response.status===200){
+        return await response.json();
       }
 
-      return await response.json();
+      if(response.status === 401) {
+        return  new Error("UnAuthorized");
+      }
+      
+      throw new Error(`HTTP error! status: ${response.status}`);
+
+      
     } catch (error) {
       throw error;
     }
@@ -59,7 +65,18 @@ export class MyServiceService {
     });
 
     observable.subscribe((data) => {
-      console.log(data);     
+      console.log(data);
     });
   }
+
+  private loginSuccess = false;
+
+  setLoginSuccess(status: boolean) {
+    this.loginSuccess = status;
+  }
+
+  getLoginSuccess(): boolean {
+    return this.loginSuccess;
+  }
+
 }

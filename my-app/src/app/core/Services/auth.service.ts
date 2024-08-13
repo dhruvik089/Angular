@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import * as jwt_decode from 'jwt-decode';
+import { config } from '../../Config/config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private tokenKey = 'JWT';
-  constructor(private cookieService: CookieService, private router: Router) {}
-  private Token = this.cookieService.get('tokenKey');
+  private tokenKey = config.tokenKey;
+  constructor(private cookieService: CookieService) {}
 
   isAuthenticated(): boolean {
     return this.cookieService.check(this.tokenKey);

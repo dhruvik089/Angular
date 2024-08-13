@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TempComponent } from './temp/temp.component';
-import { FormComponent } from './form/form.component';
-import { DataComponent } from './data/data.component';
-import { ApiComponent } from './api/ApiComponent';
-import { PerentComponentComponent } from './perent-component/perent-component.component';
-import { LifeCycleComponent } from './life-cycle/life-cycle.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
+import { TempComponent } from './features/temp/temp.component'; 
+import { FormComponent } from '../app/features/form/form.component';
+import { DataComponent } from './features/data/data.component';
+import { ApiComponent } from './features/api/ApiComponent';
+import { PerentComponentComponent } from '../app/features/perent-component/perent-component.component';
+import { LifeCycleComponent } from '../app/features/life-cycle/life-cycle.component';
+import { LoginComponent } from '../app/features/login/login.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Login', pathMatch: 'full' },

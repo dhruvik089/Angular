@@ -2,7 +2,8 @@ import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiComponent } from '../api/ApiComponent';
-import { MyServiceService } from '../Services/my-service.service';
+import { MyServiceService } from '../../core/Services/my-service.service';
+import {config} from '../../Config/config'
 
 @Component({
   selector: 'app-form',
@@ -13,13 +14,13 @@ export class FormComponent implements OnInit {
   @ViewChild('myForm', { static: false }) form!: NgForm;
   apiComponent: ApiComponent;
   services: MyServiceService = inject(MyServiceService);
-
-  RegisterApi = `http://localhost:51206/api/Register/`;
-  UserApi = `http://localhost:51206/api/user/`;
+ 
+  RegisterApi =config.LoginRegister;
+  UserApi = config.GetUser;
 
   constructor(private router: Router) {}
 
-  data: any = [];
+  data = [];
 
   async ngOnInit() {
     await this.services

@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MyServiceService } from 'src/app/Services/my-service.service';
+import { Component , OnInit } from '@angular/core';
+import { MyServiceService } from '../../core/Services/my-service.service';
 import { Observable } from 'rxjs';
 
 @Component({

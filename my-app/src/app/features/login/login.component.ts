@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MyServiceService } from '../Services/my-service.service';
-import { AuthService } from '../Services/auth.service';
-import { ToastrService } from 'ngx-toastr'; 
+import { Router } from '@angular/router'; 
+import { MyServiceService } from '../../core/Services/my-service.service';
+import { AuthService } from '../../core/Services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { config } from '../../Config/config';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  
   isEmailValid = true;
-  isPasswordValid = true; 
+  isPasswordValid = true;
 
   constructor(
     private myService: MyServiceService,
@@ -24,7 +24,7 @@ export class LoginComponent {
     authService.removeToken();
   }
 
-  LoginApi=`http://localhost:51206/api/Register/`
+  LoginApi = config.LoginRegister;
 
   login(form: NgForm) {
     this.isEmailValid = true;
@@ -44,12 +44,12 @@ export class LoginComponent {
       .PostApi(`${this.LoginApi}login`)
       .then((data) => {
         this.authService.setToken(data.Token);
-        this.myService.setLoginSuccess(true)
-        
+        this.myService.setLoginSuccess(true);
+
         this.router.navigate(['/Temp']);
       })
       .catch((error) => {
-        this.toastr.error('Failed to login',error.message);
+        this.toastr.error('Failed to login', error.message);
       });
   }
 }

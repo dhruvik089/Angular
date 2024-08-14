@@ -3,7 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiComponent } from '../api/ApiComponent';
 import { MyServiceService } from '../../core/Services/my-service.service';
-import {config} from '../../Config/config'
+import {config} from '../../Config/config' 
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-form',
@@ -14,9 +15,12 @@ export class FormComponent implements OnInit {
   @ViewChild('myForm', { static: false }) form!: NgForm;
   apiComponent: ApiComponent;
   services: MyServiceService = inject(MyServiceService);
+   
+  cookieService: CookieService=inject(CookieService);
  
   RegisterApi =config.LoginRegister;
   UserApi = config.GetUser;
+  jwtToken: string = this.cookieService.get('JWT');
 
   constructor(private router: Router) {}
 
@@ -24,11 +28,14 @@ export class FormComponent implements OnInit {
 
   async ngOnInit() {
     await this.services
-      .getUserList(`${this.UserApi}GetAllUser`)
+      .getUserList(`${this.UserApi}GetAllUser`,this.jwtToken)
       .then((res) => {
         this.data = res;
+        console.log(this.data);
+        
       })
       .catch((err) => console.log('error occurred', err));
+    
   }
 
   obj = {

@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+ import { Injectable } from '@angular/core';  
 
 @Injectable({
   providedIn: 'root',
@@ -25,48 +24,43 @@ export class MyServiceService {
         },
         body: JSON.stringify(this.data),
       });
-      
-      if (response.status===200){
+
+      if (response.status === 200) {
         return await response.json();
       }
 
-      if(response.status === 401) {
-        return  new Error("UnAuthorized");
+      if (response.status === 401) {
+        return new Error('UnAuthorized');
       }
-      
-      throw new Error(`HTTP error! status: ${response.status}`);
 
-      
+      throw new Error(`HTTP error! status: ${response.status}`);
     } catch (error) {
       throw error;
     }
   }
 
-  async getUserList(api: string): Promise<any> {
+  async getUserList(api: string, token): Promise<any> {
     // eslint-disable-next-line no-useless-catch
     try {
-      const Response = await fetch(api);
+      if (token) {
+        const Response = await fetch(api, {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+          },
+        });
 
-      if (!Response.ok) {
-        throw new Error(`HTTP error! status: ${Response.status}`);
+        if (!Response.ok) {
+          throw new Error(`HTTP error! status: ${Response.status}`);
+        }
+
+        return await Response.json();
       }
-
-      return await Response.json();
+      throw new Error('Token not provided');
     } catch (error) {
-      throw error;
+      throw console.log(error);
     }
-  }
-
-  getApiData() {
-    const observable = new Observable((obj) => {
-      setTimeout(() => {
-        obj.next('Data fetched successfully');
-      }, 1000);
-    });
-
-    observable.subscribe((data) => {
-      console.log(data);
-    });
   }
 
   private loginSuccess = false;
@@ -78,5 +72,4 @@ export class MyServiceService {
   getLoginSuccess(): boolean {
     return this.loginSuccess;
   }
-
 }

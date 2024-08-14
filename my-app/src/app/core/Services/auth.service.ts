@@ -7,7 +7,7 @@ import { config } from '../../Config/config';
   providedIn: 'root',
 })
 export class AuthService {
-  private tokenKey = config.tokenKey;
+  private tokenKey = 'JWT';
   constructor(private cookieService: CookieService) {}
 
   isAuthenticated(): boolean {
@@ -16,6 +16,7 @@ export class AuthService {
 
   setToken(token: string): void {
     this.cookieService.set(this.tokenKey, token);
+    config.JWTToken = token;
   }
 
   removeToken(): void {
@@ -30,7 +31,7 @@ export class AuthService {
     if (expiryTimeInSeconds) {
       const currentTimeInSeconds = Math.floor(Date.now() / 1000);
 
-      if (expiryTimeInSeconds - currentTimeInSeconds <= 0) {
+      if (expiryTimeInSeconds - currentTimeInSeconds <= 0 && (token===config.JWTToken) ) {
         return false;
       } else {
         return true;
@@ -39,4 +40,6 @@ export class AuthService {
       return false;
     }
   }
+
+ 
 }
